@@ -59,5 +59,25 @@ export const ConfigCtrl = {
 
   setThemeConfig(theme: Pick<ConfigCtrlState, 'themeBackground' | 'themeColor' | 'themeMode'>) {
     Object.assign(state, theme)
+  },
+
+  setMobileWallets(mobileWallets: ConfigCtrlState['mobileWallets']) {
+    state.mobileWallets = mobileWallets
+  },
+
+  setDesktopWallets(desktopWallets: ConfigCtrlState['desktopWallets']) {
+    state.desktopWallets = desktopWallets
+  },
+
+  setWalletImages(walletImages: ConfigCtrlState['walletImages']) {
+    state.walletImages = walletImages
+  },
+
+  setChainImages(chainImages: ConfigCtrlState['chainImages']) {
+    state.chainImages = chainImages
+  },
+
+  setTokenImages(tokenImages: ConfigCtrlState['tokenImages']) {
+    state.tokenImages = tokenImages
   }
 }

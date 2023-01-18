@@ -31,4 +31,14 @@ export class Web3Modal {
   public subscribeModal = ModalCtrl.subscribe
 
   public setTheme = ConfigCtrl.setThemeConfig
+
+  public setMobileWallets = ConfigCtrl.setMobileWallets
+
+  public setDesktopWallets = ConfigCtrl.setDesktopWallets
+
+  public setWalletImages = ConfigCtrl.setWalletImages
+
+  public setChainImages = ConfigCtrl.setChainImages
+
+  public setTokenImages = ConfigCtrl.setTokenImages
 }

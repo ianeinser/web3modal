@@ -4,6 +4,24 @@ import type { TemplateResult } from 'lit'
 import { InjectedId } from '../presets/EthereumPresets'
 import { UiUtil } from './UiUtil'
 
+export interface DesktopWallet {
+  id: string
+  name: string
+  links: {
+    native: string
+    universal: string
+  }
+}
+
+export interface ExtensionWallet {
+  name: string
+  icon: string
+  url: string
+  isMobile?: boolean | undefined
+  isDesktop?: boolean | undefined
+  id: string
+}
+
 export const DataFilterUtil = {
   allowedExplorerListings(listings: Listing[]) {
     const { explorerAllowList, explorerDenyList } = ConfigCtrl.state
@@ -65,5 +83,47 @@ export const DataFilterUtil = {
     const connectorNames = connectors.map(({ name }) => name.toUpperCase())
 
     return listings.filter(({ name }) => !connectorNames.includes(name.toUpperCase()))
+  },
+
+  deduplicateWallets<T extends DesktopWallet | ExtensionWallet | Listing | MobileWallet>(
+    duplicates: T[]
+  ) {
+    const uniqueIds: string[] = []
+
+    const uniqueWallets = duplicates.filter(w => {
+      const isDuplicate = uniqueIds.includes(w.id)
+
+      if (!isDuplicate) {
+        uniqueIds.push(w.id)
+
+        return true
+      }
+
+      return false
+    })
+
+    return uniqueWallets
+  },
+
+  deduplicateWalletTemplates(duplicates: TemplateResult<1>[]) {
+    const uniqueNames: string[] = []
+
+    const uniqueWalletTemplates = duplicates.filter(wt => {
+      const wtname: string = JSON.stringify(wt.values[1])
+      const isDuplicate = uniqueNames.includes(wtname)
+
+      if (!isDuplicate) {
+        uniqueNames.push(wtname)
+
+        return true
+      }
+
+      // eslint-disable-next-line no-console
+      console.log(`Wallet template name ${wtname}`)
+
+      return false
+    })
+
+    return uniqueWalletTemplates
   }
 }

@@ -49,14 +49,14 @@
   height: 28px;
   display: flex;
   position: relative;
-  margin: 5px 15px 5px 5px;
+  margin: 8px 15px 5px 5px;
   justify-content: space-between;
   align-items: center;
 }
 
 .w3m-toolbar svg,
 .w3m-toolbar img {
-  height: 28px;
+  height: 44px;
   object-position: left center;
   object-fit: contain;
 }

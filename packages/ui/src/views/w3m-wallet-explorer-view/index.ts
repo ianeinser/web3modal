@@ -180,6 +180,10 @@ export class W3mWalletExplorerView extends LitElement {
       extensions = extensions.filter(({ name }) => UiUtil.caseSafeIncludes(name, this.search))
     }
 
+     //  Remove duplicates
+    listings = DataFilterUtil.deduplicateWallets(listings)
+    extensions = isExtensions ? DataFilterUtil.deduplicateWallets(extensions) : extensions
+
     const isEmpty = !this.loading && !listings.length && !extensions.length && !isCoinbase
     const iterator = Math.max(extensions.length, listings.length)
     const classes = {
